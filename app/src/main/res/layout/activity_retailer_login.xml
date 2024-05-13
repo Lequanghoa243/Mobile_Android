@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="youremail@gmail.com"
+            android:hint="Youremail@gmail.com"
             android:inputType="textEmailAddress"
             app:hintTextColor="@color/black"
             app:boxStrokeColor="@color/black"
