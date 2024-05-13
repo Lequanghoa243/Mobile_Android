@@ -11,11 +11,9 @@
     <color name="button_color">#3D8FEF</color>
     <color name="star">#FFC71E</color>
     <color name="heart">#FF4C4C</color>
-    <color name="smalltext_color"> 808080</color>
     <color name="course_title">#002F6C</color>
     <color name="title">#2C2C2C</color>
     <color name="processbar_cover">#ACD7FF</color>
     <color name="processbar_under">#EAF4FF</color>
-    <color name="active"> 3D8FEF</color>
     <color name="inactive">#FFFFFF</color>
 </resources>

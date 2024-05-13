@@ -13,13 +13,10 @@
         android:theme="@style/Theme.MobileProject"
         tools:targetApi="31">
         <activity
-            android:name=".Splash_screen"
-            android:exported="false" />
-        <activity
             android:name=".Common.LoginSignup.Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Splash_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
