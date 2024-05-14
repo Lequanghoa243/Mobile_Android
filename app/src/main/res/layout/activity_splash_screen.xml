@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    tools:context=".Splash_screen">
+    tools:context=".Common.Splash_screen">
 
     <ImageView
         android:id="@+id/splashimg"
@@ -18,8 +18,9 @@
         android:id="@+id/created_by"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="92dp"
         android:text="Created by Quang Hoa and Dieu Huong"
         app:layout_constraintStart_toStartOf="@+id/splashimg"
-        tools:layout_editor_absoluteY="712dp" />
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="624dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

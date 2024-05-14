@@ -1,4 +1,4 @@
-package com.example.mobileproject;
+package com.example.mobileproject.Common;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.mobileproject.Common.LoginSignup.Login;
+import com.example.mobileproject.R;
 
 public class Splash_screen extends AppCompatActivity {
     private static int Splash_timer = 4000;
@@ -36,12 +36,15 @@ public class Splash_screen extends AppCompatActivity {
         createdby = findViewById(R.id.created_by);
         sideAnim = AnimationUtils.loadAnimation(this,R.anim.side_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        backgroundImage.setAnimation(sideAnim);
+        createdby.setAnimation(bottomAnim);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(Splash_screen.this, Login.class);
                 startActivity(intent);
-                finish();;
+                finish();
             }
         },Splash_timer);
 

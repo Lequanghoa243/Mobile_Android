@@ -2,18 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bee_background_color"
-    android:padding="40dp"
-    tools:context=".Common.LoginSignup.Login">
+    android:padding="30dp"
+    tools:context=".Common.Login">
 
 <LinearLayout
-    android:orientation="vertical"
+    android:id="@+id/main"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingTop="30dp"
-    android:layout_height="wrap_content">
+    >
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

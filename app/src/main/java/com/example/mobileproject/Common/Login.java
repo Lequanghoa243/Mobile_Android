@@ -1,4 +1,4 @@
-package com.example.mobileproject.Common.LoginSignup;
+package com.example.mobileproject.Common;
 
 import android.os.Bundle;
 

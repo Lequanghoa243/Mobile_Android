@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mobile Project</string>
+    <string name="continue_button">Continue</string>
+    <string name="skip_button">Skip</string>
 </resources>
