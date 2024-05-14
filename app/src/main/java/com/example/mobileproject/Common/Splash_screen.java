@@ -1,6 +1,7 @@
 package com.example.mobileproject.Common;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -21,6 +22,7 @@ public class Splash_screen extends AppCompatActivity {
     ImageView backgroundImage;
     TextView createdby;
     Animation  sideAnim,bottomAnim;
+    SharedPreferences onBoardingScreen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +44,21 @@ public class Splash_screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_screen.this, Login.class);
-                startActivity(intent);
-                finish();
+                onBoardingScreen = getSharedPreferences("onBoardingScreen",MODE_PRIVATE);
+                boolean isFirstTime = onBoardingScreen.getBoolean("firstTime",true);
+                if(isFirstTime){
+                    SharedPreferences.Editor editor = onBoardingScreen.edit();
+                    editor.putBoolean("firstTime",false);
+                    editor.commit();
+                    Intent intent = new Intent(getApplicationContext(), OnBoarding.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Intent intent = new Intent(getApplicationContext(), OnBoarding.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         },Splash_timer);
 

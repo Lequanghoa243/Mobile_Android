@@ -2,4 +2,14 @@
     <string name="app_name">Mobile Project</string>
     <string name="continue_button">Continue</string>
     <string name="skip_button">Skip</string>
+
+    <!--description-->
+    <string name="head1">Unlock your learning potential</string>
+    <string name="head2">Embark on Your Learning Adventure</string>
+    <string name="head3">Engage with Expert Instructors</string>
+    <!--description-->
+    <string name="des1">Begin your educational journey with access to a diverse range of courses.</string>
+    <string name="des2">Explore interactive lessons, quizzes to enhance your understanding and Get Certification</string>
+    <string name="des3">Connect with knowledgeable tutors for personalized guidance.</string>
+
 </resources>

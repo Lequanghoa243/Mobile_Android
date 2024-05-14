@@ -8,26 +8,36 @@
     tools:context=".Common.OnBoarding"
     android:padding="20dp">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="550dp"
+        tools:ignore="MissingConstraints">
 
 
-    </androidx.viewpager2.widget.ViewPager2>
+    </androidx.viewpager.widget.ViewPager>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent">
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/dots"/>
         <Button
+            android:onClick="next"
             android:id="@+id/next_button"
             android:layout_width="225dp"
             android:textColor="@color/white"
@@ -38,11 +48,13 @@
 
         <Button
             android:id="@+id/skip_button"
+            android:onClick="skip"
             android:layout_width="225dp"
             android:layout_height="50dp"
             android:background="#00000000"
             android:textColor="#6C6C6C"
             android:layout_gravity="center"
             android:text="@string/skip_button" />
-    </LinearLayout>
+</LinearLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

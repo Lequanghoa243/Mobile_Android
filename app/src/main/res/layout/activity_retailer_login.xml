@@ -87,7 +87,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background = "@color/bee_background_color"
+        android:background = "#00000000"
         android:text = "Forgot password?"
         android:textColor="#808080"
         android:textAllCaps="false"
@@ -99,9 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background = "#3D8FEF"
-            android:text = "Forgot password?"
+            android:text = "Login"
             android:textColor="#F9FBFF"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
 
             />
 
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background = "@color/bee_background_color"
+            android:background = "#00000000"
             android:text = "Don't have account? Sign Up here"
             android:textColor="#808080"
             android:textAllCaps="false"
