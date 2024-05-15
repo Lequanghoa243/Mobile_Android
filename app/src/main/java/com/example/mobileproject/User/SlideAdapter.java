@@ -1,4 +1,4 @@
-package com.example.mobileproject;
+package com.example.mobileproject.User;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.example.mobileproject.R;
 
 public class SlideAdapter extends PagerAdapter {
 

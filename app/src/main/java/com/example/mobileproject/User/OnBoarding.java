@@ -1,4 +1,4 @@
-package com.example.mobileproject.Common;
+package com.example.mobileproject.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.example.mobileproject.R;
-import com.example.mobileproject.SlideAdapter;
 
 public class OnBoarding extends AppCompatActivity {
     ViewPager viewPager;

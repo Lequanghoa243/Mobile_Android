@@ -1,4 +1,4 @@
-package com.example.mobileproject.Common;
+package com.example.mobileproject.User;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,7 +50,7 @@ public class Splash_screen extends AppCompatActivity {
                     SharedPreferences.Editor editor = onBoardingScreen.edit();
                     editor.putBoolean("firstTime",false);
                     editor.commit();
-                    Intent intent = new Intent(getApplicationContext(), OnBoarding.class);
+                    Intent intent = new Intent(getApplicationContext(), SignUp.class);
                     startActivity(intent);
                     finish();
                 } else{
