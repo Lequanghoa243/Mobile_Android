@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="My Account"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="161dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Le Quang Hoa"
+        android:textSize="20dp"
+        android:textColor="@color/course_title"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/useremail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="lqhoa@gmail.com"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/course_title"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_light_italic"
+        android:text="Being a student for 1 days ago"
+        app:layout_constraintTop_toBottomOf="@+id/useremail"
+        android:textSize="14dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/certificate"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:background="@drawable/shapeshadow"
+        android:elevation="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/icon_certification"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/icon_certification"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/certificates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@+id/icon_certification"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="My Certificates"
+                    android:textColor="#374957"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/redirect" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ourcommunity"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/certificate"
+        android:background="@drawable/shapeshadow"
+        android:elevation="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/icon_community"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:src="@drawable/icon_community" />
+
+                <TextView
+                    android:id="@+id/community"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@+id/icon_community"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Our community"
+                    android:textColor="#374957"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/redirect" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/aboutus"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ourcommunity"
+        android:background="@drawable/shapeshadow"
+        android:elevation="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/icon_aboutus"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:src="@drawable/icon_aboutus" />
+
+                <TextView
+                    android:id="@+id/about_us"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@+id/icon_aboutus"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="About us"
+                    android:textColor="#374957"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_marginEnd="20dp"
+
+                    android:src="@drawable/redirect" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/logout"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutus"
+        android:background="@drawable/shapeshadow"
+        android:elevation="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/icon_logout"
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="3dp"
+                    android:src="@drawable/icon_logout" />
+
+                <TextView
+                    android:id="@+id/logoutt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="9dp"
+                    android:layout_toEndOf="@+id/icon_logout"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Log out"
+                    android:textColor="#374957"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="214dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/redirect" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
