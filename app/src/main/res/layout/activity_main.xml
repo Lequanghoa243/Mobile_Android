@@ -49,9 +49,9 @@
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/course_recycler"
             android:layout_width="372dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
 
-</LinearLayout>
