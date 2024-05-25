@@ -1,4 +1,4 @@
-package com.example.mobileproject.User;
+package com.example.mobileproject.Pages;
 
 import android.content.Context;
 import android.util.Log;

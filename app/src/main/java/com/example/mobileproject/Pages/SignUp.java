@@ -1,9 +1,10 @@
-package com.example.mobileproject.User;
+package com.example.mobileproject.Pages;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,32 +14,24 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.mobileproject.R;
 
-public class Login extends AppCompatActivity {
-    Button forgotbtn,signupbtn;
+public class SignUp extends AppCompatActivity {
+    ImageView backbtn;
+    Button signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_retailer_login);
+        setContentView(R.layout.activity_sign_up);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        forgotbtn = findViewById(R.id.forgot_password_button);
-        signupbtn = findViewById(R.id.call_signup_button);
+        backbtn = findViewById(R.id.back_button);
+        signup = findViewById(R.id.signin_button);
     }
-    public void login(){
-
-    }
-
-    public void callSignUpScreen(View view){
-        Intent intent = new Intent(getApplicationContext(), SignUp.class);
-        startActivity(intent);
-        finish();
-    }
-    public void callForgetPasswordScreen(View view){
-        Intent intent = new Intent(getApplicationContext(), ForgetPassword.class);
+    public void callLogInScreen(View view){
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
         finish();
     }

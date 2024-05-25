@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://192.168.1.4:3000/";
+    private static final String BASE_URL = "https://back-end-project-vpbd.onrender.com/";
     public static Retrofit getRetrofitClient(){
         if(retrofit == null){
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)

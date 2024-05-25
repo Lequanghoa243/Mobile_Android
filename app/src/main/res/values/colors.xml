@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_700">#6C6C6C</color>
     <color name="gray_300">#C5C5C5</color>
-    <color name="bule_800">#253B80</color>
+    <color name="blue_800">#253B80</color>
     <color name="blue_500">#3D8FEF</color>
-    <color name="bee_background_color">#F9FBFF</color>
+    <color name="background_color">#F9FBFF</color>
     <color name="button_color">#3D8FEF</color>
     <color name="star">#FFC71E</color>
     <color name="heart">#FF4C4C</color>
+    <color name="smalltext_color">#808080</color>
     <color name="course_title">#002F6C</color>
     <color name="title">#2C2C2C</color>
     <color name="processbar_cover">#ACD7FF</color>
     <color name="processbar_under">#EAF4FF</color>
+    <color name="active">#3D8FEF</color>
     <color name="inactive">#FFFFFF</color>
 </resources>
