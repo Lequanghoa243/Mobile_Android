@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/course_image"
-        android:layout_width="00dp"
+        android:layout_width="400dp"
         android:layout_height="400dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"

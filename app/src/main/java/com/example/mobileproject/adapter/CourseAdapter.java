@@ -1,3 +1,4 @@
+
 package com.example.mobileproject.adapter;
 
 import android.content.Context;
@@ -54,6 +55,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(context, CoursePage.class);
+                        i.putExtra("COURSE_ID", course.getId());  // Pass the course ID
                         context.startActivity(i);
                     }
                 });
@@ -74,7 +76,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
 
         ImageView courseImage;
-        TextView courseName, totalLesson, courseDes, courseDuration,courseRating;
+        TextView courseName, totalLesson, courseDes, courseDuration, courseRating;
 
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);

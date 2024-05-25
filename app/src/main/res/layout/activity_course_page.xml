@@ -3,8 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Pages.CoursePage">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingBottom="10dp"
+            android:text="Course Overview"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="27dp"
+            android:src="@drawable/wishlist_button" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/course_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/course"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+    <TextView
+        android:id="@+id/course_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="23dp"
+        android:textColor="@color/course_title"
+        android:fontFamily="@font/roboto_bold"
+        android:text="UI Animation Basics"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_image" />
+
+    <TextView
+        android:id="@+id/course_des"
+        android:layout_width="384dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/inter_extralight"
+        android:text="Explore advanced techniques in UI animation to enhance user engagement and create seamless interactive"
+        app:layout_constraintTop_toBottomOf="@+id/course_title"
+        tools:layout_editor_absoluteX="11dp" />
+    <TextView
+        android:id="@+id/lesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Lessons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_des" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/lesson_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="234dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lesson" />
 </androidx.constraintlayout.widget.ConstraintLayout>
