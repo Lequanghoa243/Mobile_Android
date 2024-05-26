@@ -2,125 +2,208 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="177dp"
+    android:layout_height="225dp"
+    android:layout_margin="16dp"
+    android:background="@drawable/shapeshadow"
+    android:elevation="16dp">
 
-    <ImageView
-        android:id="@+id/course_image"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/course" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/course_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="UI Animation Basics"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_image" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/course_des"
-        android:layout_width="384dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/inter_extralight"
-        android:text="Explore advanced techniques in UI animation to enhance user engagement and create seamless interactive"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        tools:layout_editor_absoluteX="16dp" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="155dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="10dp"
+                    app:srcCompat="@drawable/course">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="15dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        app:srcCompat="@drawable/clock_two_svgrepo_com"
-        app:tint="@color/blue_800" />
+                    <ImageView
+                        android:id="@+id/course_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/course" />
 
-    <TextView
-        android:id="@+id/course_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="3"
-        android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="125dp"
+                        app:cardCornerRadius="50dp"
+                        android:layout_marginTop="2dp">
 
-    <TextView
-        android:id="@+id/week"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="Week"
-        android:textSize="12dp"
-        app:layout_constraintStart_toEndOf="@+id/course_duration"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/icon_heart"
+                            app:tint="@color/gray_700" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="155dp"
+                    android:layout_height="118dp"
+                    android:layout_below="@+id/materialCardView"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="12dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/course_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="UI Animation Basics"
+                            android:textColor="@color/blue_800"
+                            app:layout_constraintStart_toStartOf="parent"/>
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="15dp"
-        android:layout_height="14dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/week"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        app:srcCompat="@drawable/playicon"
-        app:tint="@color/blue_800" />
+                        <TextView
+                            android:id="@+id/course_des"
+                            android:layout_width="match_parent"
+                            android:layout_height="39dp"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginTop="17dp"
+                            android:fontFamily="@font/inter"
+                            android:text="Explore advanced techniques in UI animation to enhance user engagement and create seamless interactive"
+                            android:textColor="#8A8A8A"
+                            android:textSize="8dp" />
 
-    <TextView
-        android:id="@+id/course_total_lesson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:textSize="12dp"
-        android:layout_marginTop="8dp"
-        android:text="3"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
-    <TextView
-        android:id="@+id/lesson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:textSize="12dp"
-        android:layout_marginTop="8dp"
-        android:text="Lesson"
-        app:layout_constraintStart_toEndOf="@+id/course_total_lesson"
-        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="13dp"
+                            android:layout_height="14dp"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginTop="1dp"
+                            app:layout_constraintTop_toBottomOf="@+id/course_title"
+                            app:srcCompat="@drawable/clock_two_svgrepo_com"
+                            app:tint="@color/gray_700" />
 
-    <ImageView
-        android:id="@+id/star"
-        android:layout_width="40dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_des"
-        app:srcCompat="@drawable/baseline_star_24" />
+                        <TextView
+                            android:id="@+id/course_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="1.5dp"
+                            android:layout_toEndOf="@+id/imageView2"
+                            android:text="3"
+                            android:textColor="@color/gray_700"
+                            android:textSize="9dp" />
 
-    <TextView
-        android:id="@+id/course_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="3.0"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/star"
-        app:layout_constraintTop_toBottomOf="@+id/course_des" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/week"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="1.5dp"
+                            android:layout_toEndOf="@+id/course_duration"
+                            android:text="Week"
+                            android:textColor="@color/gray_700"
+                            android:textSize="9dp" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="10.5dp"
+                            android:layout_height="12dp"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_toEndOf="@+id/week"
+                            app:layout_constraintStart_toEndOf="@+id/week"
+                            app:srcCompat="@drawable/playicon"
+                            app:tint="@color/gray_700" />
+
+                        <TextView
+                            android:id="@+id/course_total_lesson"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginStart="2.5dp"
+                            android:layout_marginTop="1.5dp"
+                            android:layout_toEndOf="@+id/imageView3"
+                            android:text="3"
+                            android:textColor="@color/gray_700"
+                            android:textSize="9dp" />
+
+                        <TextView
+                            android:id="@+id/lesson"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_title"
+                            android:layout_marginStart="2.5dp"
+                            android:layout_marginTop="1.5dp"
+                            android:layout_toEndOf="@+id/course_total_lesson"
+                            android:text="Lesson"
+                            android:textColor="@color/gray_700"
+                            android:textSize="9dp" />
+
+                        <ImageView
+                            android:id="@+id/star"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_des"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/course_des"
+                            app:srcCompat="@drawable/icon_star" />
+
+                        <TextView
+                            android:id="@+id/course_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_des"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_toEndOf="@+id/star"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="3.9"
+                            android:textSize="11dp" />
+
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="59dp"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_toEndOf="@+id/course_rating"
+                            android:background="@drawable/round_background"
+                            android:paddingLeft="6dp"
+                            android:paddingTop="3dp"
+                            android:paddingRight="6dp"
+                            android:paddingBottom="3dp"
+                            android:text="Beginner"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_500"
+                            android:textSize="9dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
