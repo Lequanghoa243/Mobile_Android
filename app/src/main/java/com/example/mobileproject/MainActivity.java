@@ -1,9 +1,14 @@
 package com.example.mobileproject;
+import com.example.mobileproject.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -11,12 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileproject.Pages.Profile;
 import com.example.mobileproject.adapter.CategoryAdapter;
 import com.example.mobileproject.adapter.CourseAdapter;
+import com.example.mobileproject.databinding.ActivityMainBinding;
 import com.example.mobileproject.model.Category;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -27,19 +35,15 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-
+    BottomNavigationView bottomNavigationView;
     RecyclerView categoryRecyclerView, courseRecyclerView;
     CategoryAdapter categoryAdapter;
     CourseAdapter courseAdapter;
     ApiInterface apiInterface;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Log.d(TAG, "onCreate: Started");
-
         View mainView = findViewById(R.id.main);
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
@@ -59,6 +63,42 @@ public class MainActivity extends AppCompatActivity {
 
         loadCategories();
         loadCourses();
+
+        bottomNavigationView = findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        // Programmatically find the menu items and set onClickListeners
+        bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle home navigation
+                Toast.makeText(MainActivity.this, "Home clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle my_course navigation
+                Toast.makeText(MainActivity.this, "MyCourse clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle category navigation
+                Toast.makeText(MainActivity.this, "Category clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to Profile activity
+                Intent intent = new Intent(MainActivity.this, Profile.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadCategories() {
