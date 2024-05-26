@@ -17,4 +17,6 @@
     <color name="processbar_under">#EAF4FF</color>
     <color name="active">#3D8FEF</color>
     <color name="inactive">#FFFFFF</color>
+    <color name="colorSelected">#008FFF</color> <!-- Example: Red for selected -->
+    <color name="colorUnselected">#374957</color>
 </resources>
