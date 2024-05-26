@@ -22,6 +22,8 @@ public interface ApiInterface {
 
     @GET("course/{id}/lesson")
     Call<List<Lesson>> getCourseLessons(@Path("id") String courseId);
+    @GET("category/{id}/courses")
+    Call<List<Course>> getCoursesByCategory(@Path("id") String categoryId);
 
 }
 

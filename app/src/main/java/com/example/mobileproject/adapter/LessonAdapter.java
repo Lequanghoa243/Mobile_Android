@@ -1,6 +1,7 @@
 package com.example.mobileproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileproject.Pages.VideoPlay;
 import com.example.mobileproject.R;
 import com.example.mobileproject.model.Lesson;
 
@@ -34,8 +36,15 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     @Override
     public void onBindViewHolder(@NonNull LessonViewHolder holder, int position) {
-        holder.lessonTitle.setText(lessonList.get(position).getTitle());
+        Lesson lesson = lessonList.get(position); // Get the lesson object for the current position
+        holder.lessonTitle.setText(lesson.getTitle());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, VideoPlay.class);
+            intent.putExtra("VIDEO_URL", lesson.getVideoURL()); // Pass the video URL to the intent
+            context.startActivity(intent);
+        });
     }
+
 
     @Override
     public int getItemCount() {

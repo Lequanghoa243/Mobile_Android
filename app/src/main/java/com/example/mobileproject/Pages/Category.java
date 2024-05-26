@@ -1,15 +1,12 @@
-package com.example.mobileproject;
-import com.example.mobileproject.Pages.MyCourse;
-import com.example.mobileproject.R;
+package com.example.mobileproject.Pages;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,164 +14,161 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mobileproject.Pages.Profile;
+import com.example.mobileproject.MainActivity;
+import com.example.mobileproject.R;
 import com.example.mobileproject.adapter.CategoryAdapter;
+import com.example.mobileproject.adapter.CategoryAdapterMain;
 import com.example.mobileproject.adapter.CourseAdapter;
-import com.example.mobileproject.databinding.ActivityMainBinding;
-import com.example.mobileproject.model.Category;
+import com.example.mobileproject.adapter.CourseAdapterCategory;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+public class Category extends AppCompatActivity implements CategoryAdapterMain.OnCategoryClickListener {
     BottomNavigationView bottomNavigationView;
     RecyclerView categoryRecyclerView, courseRecyclerView;
-    CategoryAdapter categoryAdapter;
-    CourseAdapter courseAdapter;
+    CourseAdapterCategory courseAdapter;
+    CategoryAdapterMain categoryAdapter;
     ApiInterface apiInterface;
+    List<Course> courseList;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        View mainView = findViewById(R.id.main);
-        if (mainView != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return insets;
-            });
-        } else {
-            Log.e(TAG, "Main view is not found");
-            Toast.makeText(this, "Main view is not found", Toast.LENGTH_SHORT).show();
-            return; // Exit onCreate if main view is not found
-        }
-
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_category);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
         categoryRecyclerView = findViewById(R.id.category_recycler);
-        courseRecyclerView = findViewById(R.id.course_recycler);
-
+        courseRecyclerView = findViewById(R.id.course_of_category_recycler);
         loadCategories();
         loadCourses();
+
         bottomNavigationView = findViewById(R.id.navigation);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.category);
+        // Programmatically find the menu items and set onClickListeners
         bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Category.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
         bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyCourse.class);
+                Intent intent = new Intent(Category.this, MyCourse.class);
                 startActivity(intent);
+
             }
         });
 
         bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.example.mobileproject.Pages.Category.class);
-                startActivity(intent);
             }
         });
 
         bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Profile.class);
+                // Navigate to Profile activity
+                Intent intent = new Intent(Category.this, Profile.class);
                 startActivity(intent);
             }
         });
     }
 
     private void loadCategories() {
-        Log.d(TAG, "loadCategories: Started");
-        Call<List<Category>> call = apiInterface.getAllCategory();
-        call.enqueue(new Callback<List<Category>>() {
+        Call<List<com.example.mobileproject.model.Category>> call = apiInterface.getAllCategory();
+        call.enqueue(new Callback<List<com.example.mobileproject.model.Category>>() {
             @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+            public void onResponse(Call<List<com.example.mobileproject.model.Category>> call, Response<List<com.example.mobileproject.model.Category>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Category> categoryList = response.body();
-                    Log.d(TAG, "loadCategories: Categories loaded");
+                    List<com.example.mobileproject.model.Category> categoryList = response.body();
                     getAllCategory(categoryList);
                 } else {
-                    Log.e(TAG, "Failed to get categories: " + response.message());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
-                Log.e(TAG, "Error: " + t.getMessage());
-                Toast.makeText(MainActivity.this, "No response from server", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<com.example.mobileproject.model.Category>> call, Throwable t) {
+                Toast.makeText(Category.this, "No response from server", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void loadCourses() {
-        Log.d(TAG, "loadCourses: Started");
         Call<List<Course>> callCourse = apiInterface.getAllCourse();
         callCourse.enqueue(new Callback<List<Course>>() {
             @Override
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Course> courseList = response.body();
-                    Log.d(TAG, "loadCourses: Courses loaded - " + courseList.size() + " courses");
-                    for (Course course : courseList) {
-                        Log.d(TAG, "Course: " + course.getTitle() + ", Lessons: " + course.getNumberofLesson());
-                    }
+                    courseList = response.body();
                     getAllCourse(courseList);
                 } else {
-                    Log.e(TAG, "Failed to get courses: " + response.message());
                     if (response.body() == null) {
-                        Log.e(TAG, "Response body is null");
+
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
-                Log.e(TAG, "Error: " + t.getMessage());
-                Toast.makeText(MainActivity.this, "No response from server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Category.this, "No response from server", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void getAllCategory(List<Category> categoryList) {
+    private void getAllCategory(List<com.example.mobileproject.model.Category> categoryList) {
         if (categoryList == null) {
-            Log.e(TAG, "Category list is null");
             return;
         }
-        Log.d(TAG, "getAllCategory: Populating categories");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
         categoryRecyclerView.setHasFixedSize(true);
-        categoryAdapter = new CategoryAdapter(this, categoryList);
+        categoryAdapter = new CategoryAdapterMain(this, categoryList, this);
         categoryRecyclerView.setAdapter(categoryAdapter);
         categoryAdapter.notifyDataSetChanged();
     }
 
     private void getAllCourse(List<Course> courseList) {
         if (courseList == null) {
-            Log.e(TAG, "Course list is null");
             return;
         }
-        Log.d(TAG, "getAllCourse: Populating courses");
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         courseRecyclerView.setLayoutManager(layoutManager);
         courseRecyclerView.setHasFixedSize(true);
-        courseAdapter = new CourseAdapter(this, courseList);
+        courseAdapter = new CourseAdapterCategory(this, courseList);
         courseRecyclerView.setAdapter(courseAdapter);
         courseAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onCategoryClick(com.example.mobileproject.model.Category category) {
+        if (courseList == null) {
+            return;
+        }
+        List<Course> filteredCourses = new ArrayList<>();
+        for (Course course : courseList) {
+            if (course.getCategory().equals(category.getTitle())) {
+                filteredCourses.add(course);
+            }
+        }
+        getAllCourse(filteredCourses);
+    }
 }
+
