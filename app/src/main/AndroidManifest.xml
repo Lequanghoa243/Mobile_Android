@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MobileProject"
         tools:targetApi="31">
         <activity
+            android:name=".Pages.Profile"
+            android:exported="false" />
+        <activity
             android:name=".Pages.CourseDetail"
             android:exported="false" />
         <activity
