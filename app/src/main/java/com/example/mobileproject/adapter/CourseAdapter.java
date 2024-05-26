@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mobileproject.Pages.CoursePage;
+import com.example.mobileproject.Pages.CourseDetail;
 import com.example.mobileproject.R;
 import com.example.mobileproject.model.Course;
 
@@ -54,8 +54,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(context, CoursePage.class);
-                        i.putExtra("COURSE_ID", course.getId());  // Pass the course ID
+                        Intent i = new Intent(context, CourseDetail.class);
+                        i.putExtra("COURSE_ID", course.getId());
                         context.startActivity(i);
                     }
                 });

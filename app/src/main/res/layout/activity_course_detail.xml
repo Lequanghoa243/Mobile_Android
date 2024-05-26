@@ -12,8 +12,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
             android:paddingBottom="10dp"
             android:text="Course Overview"
             android:textColor="@color/black"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -47,13 +46,14 @@
         android:src="@drawable/course"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
     <TextView
         android:id="@+id/course_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="23dp"
+        android:textSize="23sp"
         android:textColor="@color/course_title"
         android:fontFamily="@font/roboto_bold"
         android:text="UI Animation Basics"
@@ -67,14 +67,15 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/inter_extralight"
         android:text="Explore advanced techniques in UI animation to enhance user engagement and create seamless interactive"
-        app:layout_constraintTop_toBottomOf="@+id/course_title"
-        tools:layout_editor_absoluteX="11dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
     <TextView
         android:id="@+id/lesson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/roboto_bold"
         android:text="Lessons"
@@ -82,10 +83,11 @@
         app:layout_constraintTop_toBottomOf="@+id/course_des" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@id/lesson_recycler"
-        android:layout_width="wrap_content"
+        android:id="@+id/lesson_recycler"
+        android:layout_width="match_parent"
         android:layout_height="234dp"
         android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lesson" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
