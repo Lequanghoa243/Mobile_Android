@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mobileproject.R;
 import com.example.mobileproject.adapter.LessonAdapter;
+import com.example.mobileproject.adapter.RatingAdapter;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.model.Lesson;
+import com.example.mobileproject.model.Rating;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
 
@@ -32,8 +34,9 @@ public class CourseDetail extends AppCompatActivity {
 
     private ImageView courseImage;
     private TextView courseTitle, courseDescription, courseDuration, courseLesson, courseRating;
-    private RecyclerView lessonsRecyclerView;
+    private RecyclerView lessonsRecyclerView, ratingRecycleView;
     private LessonAdapter lessonAdapter;
+    private RatingAdapter ratingAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class CourseDetail extends AppCompatActivity {
         courseImage = findViewById(R.id.course_image);
         courseTitle = findViewById(R.id.course_title);
         courseDescription = findViewById(R.id.course_des);
+        ratingRecycleView = findViewById(R.id.review_recycler);
         lessonsRecyclerView = findViewById(R.id.lesson_recycler);
 
         // Initialize Retrofit
@@ -69,6 +73,8 @@ public class CourseDetail extends AppCompatActivity {
             public void onResponse(Call<Course> call, Response<Course> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Course course = response.body();
+                    List<Rating> ratingList = course.getRatings();
+                    displayRating(ratingList);
                     displayCourseDetails(course);
                     fetchCourseLessons(courseId);
                 } else {
@@ -97,6 +103,16 @@ public class CourseDetail extends AppCompatActivity {
         }
     }
 
+    private void displayRating(List<Rating> ratings) {
+        if (ratings != null && !ratings.isEmpty()) {
+            ratingAdapter = new RatingAdapter(this, ratings);
+            ratingRecycleView.setLayoutManager(new LinearLayoutManager(this));
+            ratingRecycleView.setAdapter(ratingAdapter);
+        } else {
+            Log.e(TAG, "Rating list is null or empty");
+        }
+    }
+
     private void fetchCourseLessons(String courseId) {
         // Fetch course lessons
         apiInterface.getCourseLessons(courseId).enqueue(new Callback<List<Lesson>>() {
@@ -120,8 +136,12 @@ public class CourseDetail extends AppCompatActivity {
     }
 
     private void displayCourseLessons(List<Lesson> lessons) {
-        lessonAdapter = new LessonAdapter(this, lessons);
-        lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        lessonsRecyclerView.setAdapter(lessonAdapter);
+        if (lessons != null && !lessons.isEmpty()) {
+            lessonAdapter = new LessonAdapter(this, lessons);
+            lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            lessonsRecyclerView.setAdapter(lessonAdapter);
+        } else {
+            Log.e(TAG, "Lesson list is null or empty");
+        }
     }
 }
