@@ -70,20 +70,20 @@ public class VideoPlay extends AppCompatActivity {
         }
 
         if (courseId != null) {
-            fetchCourseLessons(courseId);
+            fetchCourseLessons(courseId, videoUrl);
             loadCourses();
         } else {
             Toast.makeText(this, "No course ID found", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void fetchCourseLessons(String courseId) {
+    private void fetchCourseLessons(String courseId, String activeVideoUrl) {
         apiInterface.getCourseLessons(courseId).enqueue(new Callback<List<Lesson>>() {
             @Override
             public void onResponse(Call<List<Lesson>> call, Response<List<Lesson>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Lesson> lessons = response.body();
-                    displayCourseLessons(lessons, courseId);
+                    displayCourseLessons(lessons, courseId, activeVideoUrl);
                 } else {
                     Log.e(TAG, "Failed to get course lessons: " + response.message());
                     Toast.makeText(VideoPlay.this, "Failed to get course lessons", Toast.LENGTH_SHORT).show();
@@ -98,9 +98,10 @@ public class VideoPlay extends AppCompatActivity {
         });
     }
 
-    private void displayCourseLessons(List<Lesson> lessons, String courseId) {
+    private void displayCourseLessons(List<Lesson> lessons, String courseId, String activeVideoUrl) {
         if (lessons != null && !lessons.isEmpty()) {
             lessonAdapter = new LessonAdapter(this, lessons, courseId);
+            lessonAdapter.setActiveVideoUrl(activeVideoUrl);
             lessonsRecyclerView.setAdapter(lessonAdapter);
         } else {
             Log.e(TAG, "Lesson list is null or empty");

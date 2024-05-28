@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/shapeshadow">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            app:cardCornerRadius="14dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/shapeshadow_selector"
+            app:cardElevation="1dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="5dp"
+                android:padding="12dp"
+                app:srcCompat="@drawable/icon_back"
+                app:tint="@color/gray_700" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    <ScrollView
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shapeshadow">
+        <LinearLayout
+            android:id="@+id/faq_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Question 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginBottom="8dp"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/question_text_1"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How can I reset my password?" />
+
+                <TextView
+                    android:id="@+id/answer_text_1"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:layout_height="wrap_content"
+                    android:text="You can reset your password by going to the settings page and selecting 'Change Password'. If you forgot your password, click on 'Forgot Password' on the login page and follow the instructions."
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Question 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginBottom="8dp"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/question_text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How to enroll in a new course?"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/answer_text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="To enroll in a new course, go to the 'Courses' section, browse through the available courses, and click 'Enroll' on the course you are interested in. Make sure you have the required credits or have completed the prerequisites for the course."
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Question 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginBottom="8dp"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/question_text_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What should I do if I encounter technical issues?"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/answer_text_3"
+                    android:fontFamily="@font/inter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="For technical issues, you can visit the 'Help Center' where you can find troubleshooting guides and FAQs. If the issue persists, you can submit a support ticket or contact our support team via email."
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Question 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginBottom="8dp"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/question_text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How do I track my progress in a course?"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/answer_text_4"
+                    android:fontFamily="@font/inter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You can track your progress through the 'Progress' section on the course dashboard. This section shows the modules you have completed, your grades, and any pending assignments."
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Question 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:layout_marginBottom="8dp"
+                android:elevation="1dp"
+                >
+
+                <TextView
+                    android:id="@+id/question_text_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How can I access course materials offline?"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/answer_text_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Currently, offline access to course materials is not supported. Please ensure you have a stable internet connection to access the course content. You can save important notes or summaries locally on your device for quick reference."
+                    android:textSize="12dp"
+                    android:fontFamily="@font/inter"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Question 6 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bottom_border"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/question_text_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How can I join a live session?"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/blue_800"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/answer_text_6"
+                    android:fontFamily="@font/inter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To join a live session, go to the 'Live Sessions' section on the course page and click 'Join'. Make sure you have a stable internet connection and have installed the required software for the session."
+                    android:textSize="12dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

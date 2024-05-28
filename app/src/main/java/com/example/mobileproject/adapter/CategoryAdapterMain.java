@@ -18,6 +18,7 @@ public class CategoryAdapterMain extends RecyclerView.Adapter<CategoryAdapterMai
     private Context context;
     private List<Category> categoryList;
     private OnCategoryClickListener onCategoryClickListener;
+    private Category activeCategory;
 
     public CategoryAdapterMain(Context context, List<Category> categoryList, OnCategoryClickListener onCategoryClickListener) {
         this.context = context;
@@ -36,7 +37,18 @@ public class CategoryAdapterMain extends RecyclerView.Adapter<CategoryAdapterMai
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
         holder.categoryName.setText(category.getTitle());
-        holder.itemView.setOnClickListener(v -> onCategoryClickListener.onCategoryClick(category));
+
+        if (category.equals(activeCategory)) {
+            holder.itemView.setBackgroundResource(R.drawable.shapeshadow_active); // Background for active category
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.shapeshadow); // Background for inactive category
+        }
+
+        holder.itemView.setOnClickListener(v -> {
+            activeCategory = category;
+            notifyDataSetChanged();
+            onCategoryClickListener.onCategoryClick(category);
+        });
     }
 
     @Override
@@ -55,5 +67,10 @@ public class CategoryAdapterMain extends RecyclerView.Adapter<CategoryAdapterMai
 
     public interface OnCategoryClickListener {
         void onCategoryClick(Category category);
+    }
+
+    public void setActiveCategory(Category activeCategory) {
+        this.activeCategory = activeCategory;
+        notifyDataSetChanged();
     }
 }

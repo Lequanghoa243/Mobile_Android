@@ -3,6 +3,7 @@ package com.example.mobileproject.Pages;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profile extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class Profile extends AppCompatActivity {
         });
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.user);
-        // Programmatically find the menu items and set onClickListeners
+
         bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,21 +43,30 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-             }
+                // Add your action here
+            }
         });
 
         bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Add your action here
             }
         });
 
         bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Add your action here
+            }
+        });
 
+        LinearLayout faqLayout = findViewById(R.id.certificate);
+        faqLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Faq.class);
+                startActivity(intent);
             }
         });
     }

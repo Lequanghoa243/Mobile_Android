@@ -20,12 +20,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     private Context context;
     private List<Lesson> lessonList;
-    private String courseId; // Add courseId to the adapter
+    private String courseId;
+    private String activeVideoUrl;
 
     public LessonAdapter(Context context, List<Lesson> lessonList, String courseId) {
         this.context = context;
         this.lessonList = lessonList;
-        this.courseId = courseId; // Initialize courseId
+        this.courseId = courseId;
     }
 
     @NonNull
@@ -37,12 +38,22 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
 
     @Override
     public void onBindViewHolder(@NonNull LessonViewHolder holder, int position) {
-        Lesson lesson = lessonList.get(position); // Get the lesson object for the current position
+        Lesson lesson = lessonList.get(position);
         holder.lessonTitle.setText(lesson.getTitle());
+
+        if (lesson.getVideoURL().equals(activeVideoUrl)) {
+            holder.itemView.setBackgroundResource(R.drawable.shapeshadow_active); // Background for active video
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.shapeshadow); // Background for inactive video
+        }
+
         holder.itemView.setOnClickListener(v -> {
+            activeVideoUrl = lesson.getVideoURL();
+            notifyDataSetChanged(); // Notify adapter to refresh the list
+
             Intent intent = new Intent(context, VideoPlay.class);
-            intent.putExtra("VIDEO_URL", lesson.getVideoURL()); // Pass the video URL to the intent
-            intent.putExtra("COURSE_ID", courseId); // Pass the course ID to the intent
+            intent.putExtra("VIDEO_URL", lesson.getVideoURL());
+            intent.putExtra("COURSE_ID", courseId);
             context.startActivity(intent);
         });
     }
@@ -52,8 +63,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         return lessonList.size();
     }
 
-    public static class LessonViewHolder extends RecyclerView.ViewHolder {
+    public void setActiveVideoUrl(String activeVideoUrl) {
+        this.activeVideoUrl = activeVideoUrl;
+        notifyDataSetChanged();
+    }
 
+    public static class LessonViewHolder extends RecyclerView.ViewHolder {
         TextView lessonTitle;
 
         public LessonViewHolder(@NonNull View itemView) {

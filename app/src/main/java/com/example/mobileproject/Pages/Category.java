@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileproject.MainActivity;
 import com.example.mobileproject.R;
-import com.example.mobileproject.adapter.CategoryAdapter;
 import com.example.mobileproject.adapter.CategoryAdapterMain;
-import com.example.mobileproject.adapter.CourseAdapter;
 import com.example.mobileproject.adapter.CourseAdapterCategory;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.retrofit.ApiInterface;
@@ -59,36 +57,23 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.category);
         // Programmatically find the menu items and set onClickListeners
-        bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Category.this, MainActivity.class);
-                startActivity(intent);
-            }
+        bottomNavigationView.findViewById(R.id.home).setOnClickListener(v -> {
+            Intent intent = new Intent(Category.this, MainActivity.class);
+            startActivity(intent);
         });
 
-        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Category.this, MyCourse.class);
-                startActivity(intent);
-
-            }
+        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(v -> {
+            Intent intent = new Intent(Category.this, MyCourse.class);
+            startActivity(intent);
         });
 
-        bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
+        bottomNavigationView.findViewById(R.id.category).setOnClickListener(v -> {
         });
 
-        bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to Profile activity
-                Intent intent = new Intent(Category.this, Profile.class);
-                startActivity(intent);
-            }
+        bottomNavigationView.findViewById(R.id.user).setOnClickListener(v -> {
+            // Navigate to Profile activity
+            Intent intent = new Intent(Category.this, Profile.class);
+            startActivity(intent);
         });
     }
 
@@ -101,6 +86,7 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
                     List<com.example.mobileproject.model.Category> categoryList = response.body();
                     getAllCategory(categoryList);
                 } else {
+                    // Handle the error
                 }
             }
 
@@ -120,9 +106,7 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
                     courseList = response.body();
                     getAllCourse(courseList);
                 } else {
-                    if (response.body() == null) {
-
-                    }
+                    // Handle the error
                 }
             }
 
@@ -168,7 +152,7 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
                 filteredCourses.add(course);
             }
         }
+        categoryAdapter.setActiveCategory(category);
         getAllCourse(filteredCourses);
     }
 }
-
