@@ -1,7 +1,10 @@
 package com.example.mobileproject.Pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,14 +15,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mobileproject.MainActivity;
 import com.example.mobileproject.R;
 import com.example.mobileproject.adapter.LessonAdapter;
 import com.example.mobileproject.adapter.RatingAdapter;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.model.Lesson;
 import com.example.mobileproject.model.Rating;
+import com.example.mobileproject.model.User;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
+import com.example.mobileproject.utils.SharedPreferencesManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -31,17 +38,23 @@ public class CourseDetail extends AppCompatActivity {
 
     private static final String TAG = "CoursePage";
     private ApiInterface apiInterface;
+    private SharedPreferencesManager sharedPreferencesManager;
 
     private ImageView courseImage;
     private TextView courseTitle, courseDescription, courseDuration, courseLesson, courseRating;
     private RecyclerView lessonsRecyclerView, ratingRecycleView;
     private LessonAdapter lessonAdapter;
     private RatingAdapter ratingAdapter;
+    private Button enrollButton;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
+
+        // Initialize SharedPreferencesManager
+        sharedPreferencesManager = new SharedPreferencesManager(this);
 
         // Initialize views
         courseDuration = findViewById(R.id.course_duration);
@@ -52,6 +65,7 @@ public class CourseDetail extends AppCompatActivity {
         courseDescription = findViewById(R.id.course_des);
         ratingRecycleView = findViewById(R.id.review_recycler);
         lessonsRecyclerView = findViewById(R.id.lesson_recycler);
+
 
         // Initialize Retrofit
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
@@ -65,6 +79,7 @@ public class CourseDetail extends AppCompatActivity {
             finish();
         }
     }
+
 
     private void fetchCourseDetails(String courseId) {
         // Fetch course details
@@ -90,6 +105,7 @@ public class CourseDetail extends AppCompatActivity {
             }
         });
     }
+
 
     private void displayCourseDetails(Course course) {
         courseDuration.setText(course.getLearningTime());

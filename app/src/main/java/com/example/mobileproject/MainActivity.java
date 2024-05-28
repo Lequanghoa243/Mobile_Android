@@ -1,15 +1,12 @@
 package com.example.mobileproject;
-import com.example.mobileproject.Pages.MyCourse;
-import com.example.mobileproject.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,14 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobileproject.Pages.MyCourse;
 import com.example.mobileproject.Pages.Profile;
 import com.example.mobileproject.adapter.CategoryAdapter;
 import com.example.mobileproject.adapter.CourseAdapter;
-import com.example.mobileproject.databinding.ActivityMainBinding;
 import com.example.mobileproject.model.Category;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
+import com.example.mobileproject.utils.SharedPreferencesManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -41,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
     CategoryAdapter categoryAdapter;
     CourseAdapter courseAdapter;
     ApiInterface apiInterface;
+    SharedPreferencesManager sharedPreferencesManager;
+    TextView usernameTextView;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -58,44 +59,43 @@ public class MainActivity extends AppCompatActivity {
             return; // Exit onCreate if main view is not found
         }
 
+        sharedPreferencesManager = new SharedPreferencesManager(this);
+        usernameTextView = findViewById(R.id.username);
+        updateUsername();
+
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
         categoryRecyclerView = findViewById(R.id.category_recycler);
         courseRecyclerView = findViewById(R.id.course_recycler);
 
         loadCategories();
         loadCourses();
+
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bottomNavigationView.findViewById(R.id.home).setOnClickListener(v -> {});
 
-            }
+        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MyCourse.class);
+            startActivity(intent);
         });
 
-        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyCourse.class);
-                startActivity(intent);
-            }
+        bottomNavigationView.findViewById(R.id.category).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, com.example.mobileproject.Pages.Category.class);
+            startActivity(intent);
         });
 
-        bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.example.mobileproject.Pages.Category.class);
-                startActivity(intent);
-            }
+        bottomNavigationView.findViewById(R.id.user).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Profile.class);
+            startActivity(intent);
         });
+    }
 
-        bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Profile.class);
-                startActivity(intent);
-            }
-        });
+    private void updateUsername() {
+        String firstName = sharedPreferencesManager.getFirstName();
+        String lastName = sharedPreferencesManager.getLastName();
+        if (firstName != null && lastName != null) {
+            usernameTextView.setText(firstName + " " + lastName);
+        }
     }
 
     private void loadCategories() {

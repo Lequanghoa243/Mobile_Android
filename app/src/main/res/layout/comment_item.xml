@@ -30,7 +30,7 @@
         <!-- LinearLayout for star icons -->
         <LinearLayout
             android:id="@+id/star_layout"
-            android:layout_width="15dp"
+            android:layout_width="wrap_content"
             android:layout_height="18dp"
             android:layout_toEndOf="@id/username"
             android:layout_above="@+id/comment"
