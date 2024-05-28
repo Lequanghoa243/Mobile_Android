@@ -82,11 +82,12 @@ public class Login extends AppCompatActivity {
                                 loginResponse.get_id(),
                                 loginResponse.getFirstname(),
                                 loginResponse.getLastname(),
+                                loginResponse.getEmail(),
                                 loginResponse.getMobile(),
                                 loginResponse.getToken()
                         );
 
-                        // Navigate to main screen
+                        // Navigate to profile screen
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();

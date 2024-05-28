@@ -8,6 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".Pages.Profile">
 
+
+    <LinearLayout
+        android:id="@+id/logged_in_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -22,15 +30,18 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="123dp"
-        android:layout_height="107dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="101dp"
+            android:layout_height="94dp"
+
+            android:layout_marginTop="36dp"
+
+
+            android:src="@drawable/user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/username"
@@ -70,6 +81,7 @@
             android:text="Being a student for "
             android:textSize="14dp"
             />
+
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
@@ -92,11 +104,14 @@
             />
     </LinearLayout>
 
+
+
     <LinearLayout
         android:id="@+id/certificate"
         android:layout_width="340dp"
         android:layout_height="60dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="36dp"
+
         android:background="@drawable/shapeshadow"
         android:elevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,12 +141,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="9dp"
+                    android:textColor="#374957"
                     android:layout_toEndOf="@+id/faq_icon"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:text="Frequently Asked Questions"
-                    android:textColor="#374957"
-                    android:textSize="16dp" />
+                    android:src="@drawable/icon_certification" />
+
 
                 <ImageView
                     android:layout_width="8dp"
@@ -249,6 +265,8 @@
                     android:src="@drawable/redirect" />
             </RelativeLayout>
 
+
+
         </LinearLayout>
     </LinearLayout>
 
@@ -270,7 +288,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:onClick="logout"
                 app:layout_constraintTop_toTopOf="parent">
+
 
                 <ImageView
                     android:id="@+id/icon_logout"
@@ -305,6 +325,37 @@
 
             </RelativeLayout>
         </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logged_out_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please log in to view your profile"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log In"
+            android:onClick="navigateToLogin" />
+
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:onClick="navigateToSignup" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

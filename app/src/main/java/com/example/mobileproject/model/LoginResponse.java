@@ -5,6 +5,16 @@ public class LoginResponse {
     private String firstname;
     private String lastname;
     private String mobile;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
     private String token;
 
     // Getters and Setters

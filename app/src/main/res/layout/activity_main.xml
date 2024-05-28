@@ -25,11 +25,20 @@
             android:layout_marginBottom="12dp">
 
             <TextView
+                android:id="@+id/hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="Hi, "
+                android:textColor="@color/title"
+                android:textSize="24sp" />
+            <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="Hi, Le Quang Hoa"
+                android:layout_toEndOf="@+id/hi"
+                android:text="Le Quang Hoa"
                 android:textColor="@color/title"
                 android:textSize="24sp" />
 
@@ -173,6 +182,7 @@
 
 
     </LinearLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
