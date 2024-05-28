@@ -79,7 +79,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     private void setupBottomNavigationView() {
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.my_course);
-        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(v -> {
+        bottomNavigationView.findViewById(R.id.home).setOnClickListener(v -> {
             Intent intent = new Intent(MyCourse.this, MainActivity.class);
             startActivity(intent);
         });
