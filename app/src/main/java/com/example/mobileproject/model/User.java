@@ -10,7 +10,7 @@ public class User {
     private String mobile;
     private String role;
     private String password;
-    private List<Course> courselist;
+    private List<String> courselist; // Change Course to String
     private List<String> wishlist;
     private String createdAt;
     private String updatedAt;
@@ -74,11 +74,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Course> getCourselist() {
+    public List<String> getCourselist() {
         return courselist;
     }
 
-    public void setCourselist(List<Course> courselist) {
+    public void setCourselist(List<String> courselist) {
         this.courselist = courselist;
     }
 
@@ -112,5 +112,22 @@ public class User {
 
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "_id='" + _id + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", role='" + role + '\'' +
+                ", courselist=" + courselist +
+                ", wishlist=" + wishlist +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                '}';
     }
 }

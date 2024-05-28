@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                         );
 
                         // Navigate to profile screen
-                        Intent intent = new Intent(Login.this, Profile.class);
+                        Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

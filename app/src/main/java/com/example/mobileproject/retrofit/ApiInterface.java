@@ -2,6 +2,7 @@ package com.example.mobileproject.retrofit;
 
 import com.example.mobileproject.model.Category;
 import com.example.mobileproject.model.Course;
+import com.example.mobileproject.model.EnrollRequest;
 import com.example.mobileproject.model.Lesson;
 import com.example.mobileproject.model.LoginRequest;
 import com.example.mobileproject.model.LoginResponse;
@@ -43,5 +44,6 @@ public interface ApiInterface {
 
     @POST("user/wishlist")
     Call<List<Course>>  getWishListUser(@Body UserRequest userRequest);
-
+    @POST("course/enrollcourse")
+    Call<User> enrollCourse(@Body EnrollRequest enrollRequest);
 }
