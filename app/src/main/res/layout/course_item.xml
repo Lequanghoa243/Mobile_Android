@@ -7,7 +7,7 @@
     android:layout_marginRight="10dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/shapeshadow"
+    android:background="@drawable/shapeshadow_selector"
     android:elevation="16dp">
 
         <LinearLayout
@@ -44,7 +44,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="123dp"
                         android:layout_marginTop="3dp"
-                        app:cardBackgroundColor="#E2FFFFFF"
+                        app:cardBackgroundColor="#FFFFFFFF"
                         app:cardCornerRadius="50dp">
 
                         <ImageView
@@ -83,11 +83,12 @@
                         <TextView
                             android:id="@+id/course_des"
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/course_title"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentEnd="true"
-                            android:layout_height="42dp"
-                            android:layout_below="@+id/course_title"
                             android:layout_marginTop="19dp"
+                            android:layout_marginEnd="0dp"
                             android:fontFamily="@font/inter"
                             android:text="Explore advanced techniques in UI animation to enhance user engagement and create seamless interactive"
                             android:textColor="#8A8A8A"
@@ -116,17 +117,6 @@
                             android:textSize="9dp" />
 
 
-                        <TextView
-                            android:id="@+id/week"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/course_title"
-                            android:layout_marginStart="2dp"
-                            android:layout_marginTop="2.5dp"
-                            android:layout_toEndOf="@+id/course_duration"
-                            android:text="Week"
-                            android:textColor="@color/gray_700"
-                            android:textSize="9dp" />
 
                         <ImageView
                             android:id="@+id/imageView3"
@@ -135,8 +125,7 @@
                             android:layout_below="@+id/course_title"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="3dp"
-                            android:layout_toEndOf="@+id/week"
-                            app:layout_constraintStart_toEndOf="@+id/week"
+                            android:layout_toEndOf="@+id/course_duration"
                             app:srcCompat="@drawable/playicon"
                             app:tint="@color/gray_700" />
 
@@ -160,7 +149,7 @@
                             android:layout_marginStart="2.5dp"
                             android:layout_marginTop="2.5dp"
                             android:layout_toEndOf="@+id/course_total_lesson"
-                            android:text="Lesson"
+                            android:text="lessons"
                             android:textColor="@color/gray_700"
                             android:textSize="9dp" />
 

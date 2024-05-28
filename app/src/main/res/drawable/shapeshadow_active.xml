@@ -9,9 +9,8 @@
     <!-- Searchbar Background -->
     <item android:top="0dp" android:right="0dp" android:bottom="0dp" android:left="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="#FFFFFF"/>
+            <solid android:color="#E0F0FF"/> <!-- Change this to your desired active color -->
             <corners android:radius="14dp"/>
         </shape>
     </item>
 </layer-list>
-

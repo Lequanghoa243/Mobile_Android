@@ -120,7 +120,7 @@ public class CourseDetail extends AppCompatActivity {
             public void onResponse(Call<List<Lesson>> call, Response<List<Lesson>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Lesson> lessons = response.body();
-                    displayCourseLessons(lessons);
+                    displayCourseLessons(lessons, courseId);
                 } else {
                     Log.e(TAG, "Failed to get course lessons: " + response.message());
                     Toast.makeText(CourseDetail.this, "Failed to get course lessons", Toast.LENGTH_SHORT).show();
@@ -135,9 +135,9 @@ public class CourseDetail extends AppCompatActivity {
         });
     }
 
-    private void displayCourseLessons(List<Lesson> lessons) {
+    private void displayCourseLessons(List<Lesson> lessons, String courseId) {
         if (lessons != null && !lessons.isEmpty()) {
-            lessonAdapter = new LessonAdapter(this, lessons);
+            lessonAdapter = new LessonAdapter(this, lessons, courseId);
             lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             lessonsRecyclerView.setAdapter(lessonAdapter);
         } else {

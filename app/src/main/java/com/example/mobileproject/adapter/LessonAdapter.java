@@ -19,18 +19,19 @@ import java.util.List;
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonViewHolder> {
 
     private Context context;
-    List<Lesson> lessonList;
+    private List<Lesson> lessonList;
+    private String courseId; // Add courseId to the adapter
 
-    public LessonAdapter(Context context, List<Lesson> lessonList) {
+    public LessonAdapter(Context context, List<Lesson> lessonList, String courseId) {
         this.context = context;
         this.lessonList = lessonList;
+        this.courseId = courseId; // Initialize courseId
     }
 
     @NonNull
     @Override
     public LessonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.lesson_item,parent,false);
-
+        View view = LayoutInflater.from(context).inflate(R.layout.lesson_item, parent, false);
         return new LessonViewHolder(view);
     }
 
@@ -41,19 +42,20 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.LessonView
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, VideoPlay.class);
             intent.putExtra("VIDEO_URL", lesson.getVideoURL()); // Pass the video URL to the intent
+            intent.putExtra("COURSE_ID", courseId); // Pass the course ID to the intent
             context.startActivity(intent);
         });
     }
-
 
     @Override
     public int getItemCount() {
         return lessonList.size();
     }
 
-    public static class LessonViewHolder extends RecyclerView.ViewHolder{
+    public static class LessonViewHolder extends RecyclerView.ViewHolder {
 
         TextView lessonTitle;
+
         public LessonViewHolder(@NonNull View itemView) {
             super(itemView);
             lessonTitle = itemView.findViewById(R.id.lesson_title);

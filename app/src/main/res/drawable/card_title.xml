@@ -2,7 +2,7 @@
     <!-- Shadow -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#22132CAA"/>
+            <solid android:color="#132C4A99"/>
             <corners android:radius="50dp"/>
         </shape>
     </item>
