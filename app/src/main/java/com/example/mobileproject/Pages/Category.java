@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,8 +20,12 @@ import com.example.mobileproject.R;
 import com.example.mobileproject.adapter.CategoryAdapterMain;
 import com.example.mobileproject.adapter.CourseAdapterCategory;
 import com.example.mobileproject.model.Course;
+import com.example.mobileproject.model.GetUserRequest;
+import com.example.mobileproject.model.User;
+import com.example.mobileproject.model.WishlistRequest;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
+import com.example.mobileproject.utils.SharedPreferencesManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -37,6 +42,8 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
     CategoryAdapterMain categoryAdapter;
     ApiInterface apiInterface;
     List<Course> courseList;
+    List<String> wishlist = new ArrayList<>(); // Initialize wishlist
+    SharedPreferencesManager sharedPreferencesManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +56,15 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
             return insets;
         });
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
+        sharedPreferencesManager = new SharedPreferencesManager(this);
         categoryRecyclerView = findViewById(R.id.category_recycler);
         courseRecyclerView = findViewById(R.id.course_of_category_recycler);
+
         loadCategories();
-        loadCourses();
+        loadWishlist(); // Load the wishlist before loading courses
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.category);
-        // Programmatically find the menu items and set onClickListeners
         bottomNavigationView.findViewById(R.id.home).setOnClickListener(v -> {
             Intent intent = new Intent(Category.this, MainActivity.class);
             startActivity(intent);
@@ -67,11 +75,9 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
             startActivity(intent);
         });
 
-        bottomNavigationView.findViewById(R.id.category).setOnClickListener(v -> {
-        });
+        bottomNavigationView.findViewById(R.id.category).setOnClickListener(v -> {});
 
         bottomNavigationView.findViewById(R.id.user).setOnClickListener(v -> {
-            // Navigate to Profile activity
             Intent intent = new Intent(Category.this, Profile.class);
             startActivity(intent);
         });
@@ -117,6 +123,30 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
         });
     }
 
+    private void loadWishlist() {
+        String userId = sharedPreferencesManager.getUserId();
+        if (userId != null) {
+            GetUserRequest getUserRequest = new GetUserRequest(userId);
+            apiInterface.getAUser(getUserRequest).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        User user = response.body();
+                        wishlist = user.getWishlist() != null ? user.getWishlist() : new ArrayList<>();
+                        loadCourses(); // Load courses after wishlist is loaded
+                    } else {
+                        // Handle the error
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    // Handle the failure
+                }
+            });
+        }
+    }
+
     private void getAllCategory(List<com.example.mobileproject.model.Category> categoryList) {
         if (categoryList == null) {
             return;
@@ -136,7 +166,7 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         courseRecyclerView.setLayoutManager(layoutManager);
         courseRecyclerView.setHasFixedSize(true);
-        courseAdapter = new CourseAdapterCategory(this, courseList);
+        courseAdapter = new CourseAdapterCategory(this, courseList, wishlist);
         courseRecyclerView.setAdapter(courseAdapter);
         courseAdapter.notifyDataSetChanged();
     }
@@ -154,5 +184,33 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
         }
         categoryAdapter.setActiveCategory(category);
         getAllCourse(filteredCourses);
+    }
+
+    public void toggleWishlist(String courseId, ImageView wishlistIcon) {
+        String userId = sharedPreferencesManager.getUserId();
+        WishlistRequest wishlistRequest = new WishlistRequest(userId, courseId);
+        apiInterface.addToWishList(wishlistRequest).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    if (wishlist.contains(courseId)) {
+                        wishlist.remove(courseId);
+                        wishlistIcon.setImageResource(R.drawable.icon_heart);
+                        Toast.makeText(Category.this, "Removed from Wishlist", Toast.LENGTH_SHORT).show();
+                    } else {
+                        wishlist.add(courseId);
+                        wishlistIcon.setImageResource(R.drawable.heart_fill);
+                        Toast.makeText(Category.this, "Added to Wishlist", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Category.this, "Failed to update wishlist", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(Category.this, "Error updating wishlist: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

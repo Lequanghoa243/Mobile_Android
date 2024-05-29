@@ -21,6 +21,8 @@ import com.example.mobileproject.adapter.CategoryAdapter;
 import com.example.mobileproject.adapter.CourseAdapter;
 import com.example.mobileproject.model.Category;
 import com.example.mobileproject.model.Course;
+import com.example.mobileproject.model.GetUserRequest;
+import com.example.mobileproject.model.User;
 import com.example.mobileproject.retrofit.ApiInterface;
 import com.example.mobileproject.retrofit.RetrofitClient;
 import com.example.mobileproject.utils.SharedPreferencesManager;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     SharedPreferencesManager sharedPreferencesManager;
     TextView usernameTextView;
+    List<String> wishlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         courseRecyclerView = findViewById(R.id.course_recycler);
 
         loadCategories();
-        loadCourses();
+        loadWishlist(); // Load the wishlist before loading courses
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -134,6 +137,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void loadWishlist() {
+        String userId = sharedPreferencesManager.getUserId();
+        GetUserRequest getUserRequest = new GetUserRequest(userId);
+        if (userId != null) {
+            apiInterface.getAUser(getUserRequest).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        User user = response.body();
+                        wishlist = user.getWishlist();
+                        loadCourses(); // Load courses after wishlist is loaded
+                    } else {
+                        Log.e(TAG, "Failed to fetch wishlist: " + response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.e(TAG, "Error: " + t.getMessage());
+                }
+            });
+        }
+    }
+
     private void loadCourses() {
         Log.d(TAG, "loadCourses: Started");
         Call<List<Course>> callCourse = apiInterface.getAllCourse();
@@ -186,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         courseRecyclerView.setLayoutManager(layoutManager);
         courseRecyclerView.setHasFixedSize(true);
-        courseAdapter = new CourseAdapter(this, courseList);
+        courseAdapter = new CourseAdapter(this, courseList, wishlist);
         courseRecyclerView.setAdapter(courseAdapter);
         courseAdapter.notifyDataSetChanged();
     }

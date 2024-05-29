@@ -77,7 +77,6 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     LoginResponse loginResponse = response.body();
                     if (loginResponse != null) {
-                        // Save user details in SharedPreferences
                         sharedPreferencesManager.saveUserDetails(
                                 loginResponse.get_id(),
                                 loginResponse.getFirstname(),

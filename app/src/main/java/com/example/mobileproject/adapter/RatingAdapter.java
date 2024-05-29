@@ -12,17 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.model.Rating;
+import com.example.mobileproject.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.RatingViewHolder> {
 
     private Context context;
     private List<Rating> ratingList;
+    private Map<String, User> userMap;
 
-    public RatingAdapter(Context context, List<Rating> ratingList) {
+    public RatingAdapter(Context context, List<Rating> ratingList, Map<String, User> userMap) {
         this.context = context;
         this.ratingList = ratingList;
+        this.userMap = userMap;
     }
 
     @NonNull
@@ -36,7 +40,14 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.RatingView
     public void onBindViewHolder(@NonNull RatingViewHolder holder, int position) {
         Rating rating = ratingList.get(position);
         holder.comment.setText(rating.getComment());
-        holder.username.setText(rating.getPostedby());
+
+        User user = userMap.get(rating.getPostedby());
+        if (user != null) {
+            holder.username.setText(user.getFirstname() + " " + user.getLastname());
+        } else {
+            holder.username.setText("Unknown User");
+        }
+
         int starRating = (int) Math.round(rating.getStar());
         addStarIcons(holder.starLayout, starRating);
     }
