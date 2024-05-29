@@ -46,4 +46,5 @@ public interface ApiInterface {
     Call<List<Course>>  getWishListUser(@Body UserRequest userRequest);
     @POST("course/enrollcourse")
     Call<User> enrollCourse(@Body EnrollRequest enrollRequest);
+
 }
