@@ -62,11 +62,12 @@
             app:cardElevation="0dp">>
 
             <ImageView
+                android:id="@+id/wishList"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="12dp"
                 app:srcCompat="@drawable/icon_heart"
-                app:tint="@color/gray_700" />
+ />
         </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>

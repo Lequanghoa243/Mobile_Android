@@ -3,12 +3,14 @@ package com.example.mobileproject.retrofit;
 import com.example.mobileproject.model.Category;
 import com.example.mobileproject.model.Course;
 import com.example.mobileproject.model.EnrollRequest;
+import com.example.mobileproject.model.GetUserRequest;
 import com.example.mobileproject.model.Lesson;
 import com.example.mobileproject.model.LoginRequest;
 import com.example.mobileproject.model.LoginResponse;
 import com.example.mobileproject.model.RatingRequest;
 import com.example.mobileproject.model.User;
 import com.example.mobileproject.model.UserRequest;
+import com.example.mobileproject.model.WishlistRequest;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public interface ApiInterface {
     Call<List<Category>> getAllCategory();
     @GET("user")
     Call<List<User>> getAllUser();
+
 
     @GET("course")
     Call<List<Course>> getAllCourse();
@@ -46,11 +49,18 @@ public interface ApiInterface {
     @POST("user/course-list")
     Call<List<Course>>  getCourseListUser(@Body UserRequest userRequest);
 
+
     @POST("user/wishlist")
     Call<List<Course>>  getWishListUser(@Body UserRequest userRequest);
 
     @POST("course/enrollcourse")
     Call<User> enrollCourse(@Body EnrollRequest enrollRequest);
+
+    @POST("user/get-user")
+    Call<User> getAUser(@Body GetUserRequest getUserRequest);
+
+    @PUT("course/wishlist")
+    Call<User> addToWishList(@Body WishlistRequest wishlistRequest);
 
     @PUT("/course/rating")
     Call<Course> rateCourse(@Body RatingRequest ratingRequest);

@@ -47,11 +47,11 @@
                     app:cardCornerRadius="50dp">
 
                     <ImageView
+                        android:id="@+id/wishlist_icon"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:padding="4dp"
-                        app:srcCompat="@drawable/icon_heart"
-                        app:tint="@color/gray_700" />
+                        app:srcCompat="@drawable/icon_heart" />
                 </com.google.android.material.card.MaterialCardView>
             </com.google.android.material.card.MaterialCardView>
 
