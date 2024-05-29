@@ -46,6 +46,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     ApiInterface apiInterface;
     private List<Course> courseList = new ArrayList<>();
     private List<String> wishlist = new ArrayList<>(); // Wishlist to manage wishlist state
+    private List<Course> userCourses = new ArrayList<>(); // User's course list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         checkLoginStatus();
 
         // Fetch all courses and wishlist
-        fetchAllCourses();
+        fetchAllCourses(false);
     }
 
     private void initViews() {
@@ -66,6 +67,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         loggedOutView = findViewById(R.id.logged_out_view);
         categoryRecyclerView = findViewById(R.id.list_recycler);
         courseRecyclerView = findViewById(R.id.course_recycler);
+
         sharedPreferencesManager = new SharedPreferencesManager(this);
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
 
@@ -80,6 +82,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         // Setup RecyclerView for courses
         courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseRecyclerView.setHasFixedSize(true);
+
     }
 
     private void setupBottomNavigationView() {
@@ -115,7 +118,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         }
     }
 
-    private void fetchAllCourses() {
+    private void fetchAllCourses(boolean inProgressOnly) {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
             Log.e(TAG, "User ID is null");
@@ -130,7 +133,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
                 if (response.isSuccessful() && response.body() != null) {
                     courseList.clear();
                     courseList.addAll(response.body());
-                    fetchWishlist(); // Fetch wishlist after getting all courses
+                    fetchUserCourses(inProgressOnly); // Fetch user's courses after getting all courses
                     Log.d(TAG, "Courses fetched successfully");
                 } else {
                     Log.e(TAG, "Failed to fetch courses: " + response.message());
@@ -146,7 +149,72 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         });
     }
 
-    private void fetchWishlist() {
+    private void fetchUserCourses(boolean inProgressOnly) {
+        String userId = sharedPreferencesManager.getUserId();
+        if (userId == null) {
+            Log.e(TAG, "User ID is null");
+            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        UserRequest userRequest = new UserRequest(userId);
+        Call<List<Course>> call = apiInterface.getCourseListUser(userRequest);
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    userCourses.clear();
+                    userCourses.addAll(response.body());
+                    fetchWishlist(inProgressOnly); // Fetch wishlist after getting user's courses
+                    Log.d(TAG, "User's courses fetched successfully");
+                } else {
+                    Log.e(TAG, "Failed to fetch user's courses: " + response.message());
+                    Toast.makeText(MyCourse.this, "Failed to fetch user's courses", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Log.e(TAG, "Failed to fetch user's courses", t);
+                Toast.makeText(MyCourse.this, "Failed to fetch user's courses", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void fetchCourses() {
+        String userId = sharedPreferencesManager.getUserId();
+        if (userId == null) {
+            Log.e(TAG, "User ID is null");
+            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        UserRequest userRequest = new UserRequest(userId);
+
+        Call<List<Course>> call = apiInterface.getCourseListUser(userRequest);
+        call.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    courseList.clear();
+                    courseList.addAll(response.body());
+                    courseAdapter.notifyDataSetChanged();
+                    Log.d(TAG, "Courses fetched successfully");
+                    Toast.makeText(MyCourse.this, "Courses fetched successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(TAG, "Failed to fetch courses: " + response.message());
+                    Toast.makeText(MyCourse.this, "Failed to fetch courses", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Log.e(TAG, "Failed to fetch courses", t);
+                Toast.makeText(MyCourse.this, "Failed to fetch courses", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void fetchWishlist(boolean inProgressOnly) {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
             Log.e(TAG, "User ID is null");
@@ -163,7 +231,11 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
                     User user = response.body();
                     wishlist.clear();
                     wishlist.addAll(user.getWishlist());
-                    filterWishlistCourses(); // Filter courses to show only those in wishlist
+                    if (inProgressOnly) {
+                        filterInProgressCourses();
+                    } else {
+                        filterWishlistCourses();
+                    }
                     Log.d(TAG, "Wishlist fetched successfully");
                 } else {
                     Log.e(TAG, "Failed to fetch wishlist: " + response.message());
@@ -191,6 +263,18 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         setupCourseAdapter();
     }
 
+    private void filterInProgressCourses() {
+        List<Course> inProgressCourses = new ArrayList<>();
+        for (Course course : courseList) {
+            if (userCourses.contains(course)) {
+                inProgressCourses.add(course);
+            }
+        }
+        courseList.clear();
+        courseList.addAll(inProgressCourses);
+        setupCourseAdapter();
+    }
+
     private void setupCourseAdapter() {
         courseAdapter = new CourseAdapterCategory(this, courseList, wishlist);
         courseRecyclerView.setAdapter(courseAdapter);
@@ -202,7 +286,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         if (category.equals("Saved Courses")) {
             filterWishlistCourses();
         } else if (category.equals("In-progress Courses")) {
-            fetchAllCourses(); // Fetch all courses and filter based on progress status
+            fetchCourses(); // Fetch all courses and filter based on progress status
         } else {
             // Handle other categories if needed
         }
