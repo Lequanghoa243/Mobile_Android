@@ -13,8 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/background_color"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
                 android:layout_toEndOf="@+id/hi"
-                android:text="Le Quang Hoa"
+                android:text="Welcome Aboard!"
                 android:textColor="@color/title"
                 android:textSize="24sp" />
 
@@ -49,7 +48,7 @@
                 android:layout_below="@+id/username"
                 android:layout_marginTop="1dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Find your lessons today!"
+                android:text="Explore Bee Plus Academy!"
                 android:textColor="#8C8C8C"
                 android:textSize="16sp" />
 
@@ -58,9 +57,10 @@
         <RelativeLayout
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/shapeshadow"
             android:elevation="16dp">
 
@@ -83,6 +83,7 @@
                 android:src="@drawable/search" />
         </RelativeLayout>
 
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="550dp"
@@ -92,7 +93,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -126,6 +126,7 @@
                             android:textSize="20dp" />
 
                         <TextView
+                            android:id="@+id/viewallcategory"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -180,9 +181,7 @@
             </LinearLayout>
         </ScrollView>
 
-
     </LinearLayout>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -194,6 +193,6 @@
         android:background="@color/white"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

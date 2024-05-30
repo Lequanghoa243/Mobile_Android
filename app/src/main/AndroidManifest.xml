@@ -55,6 +55,9 @@
         <activity
             android:name=".Pages.Faq"
             android:exported="true" />
+        <activity
+            android:name=".Pages.Search"
+            android:exported="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobileproject.Pages.MyCourse;
 import com.example.mobileproject.Pages.Profile;
+import com.example.mobileproject.Pages.Search;
 import com.example.mobileproject.adapter.CategoryAdapter;
 import com.example.mobileproject.adapter.CourseAdapter;
 import com.example.mobileproject.model.Category;
@@ -98,6 +99,18 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.findViewById(R.id.user).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Profile.class);
+            startActivity(intent);
+        });
+
+        // Add click listener for the search bar
+        findViewById(R.id.search_bar).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Search.class);
+            startActivity(intent);
+        });
+
+        // Add click listener for the view all categories text view
+        findViewById(R.id.viewallcategory).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, com.example.mobileproject.Pages.Category.class);
             startActivity(intent);
         });
     }

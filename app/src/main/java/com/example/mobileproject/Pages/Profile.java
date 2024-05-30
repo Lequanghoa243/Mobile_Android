@@ -37,7 +37,6 @@ public class Profile extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.user);
-
         bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,20 +48,14 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Add your action here
-
                 Intent intent = new Intent(Profile.this, MyCourse.class);
                 startActivity(intent);
-
             }
         });
 
         bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Add your action here
                 Intent intent = new Intent(Profile.this, Category.class);
                 startActivity(intent);
             }

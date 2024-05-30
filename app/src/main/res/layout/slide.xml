@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/sliderImage"
-        android:layout_width="354dp"
-        android:layout_height="625dp"
+        android:layout_width="334dp"
+        android:layout_height="615dp"
         android:layout_marginTop="16dp"
         android:padding="10dp"
         android:src="@drawable/slide3"

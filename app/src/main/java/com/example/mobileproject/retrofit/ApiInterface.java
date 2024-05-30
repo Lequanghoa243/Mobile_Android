@@ -63,6 +63,7 @@ public interface ApiInterface {
     @POST("course/enrollcourse")
     Call<User> enrollCourse(@Body EnrollRequest enrollRequest);
 
+
     @POST("user/get-user")
     Call<User> getAUser(@Body GetUserRequest getUserRequest);
 
@@ -71,4 +72,5 @@ public interface ApiInterface {
 
     @PUT("/course/rating")
     Call<Course> rateCourse(@Body RatingRequest ratingRequest);
+
 }
