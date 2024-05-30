@@ -40,6 +40,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     private RecyclerView categoryRecyclerView, courseRecyclerView;
     private ListAdapter listAdapter;
     private CourseAdapterCategory courseAdapter;
+
     private BottomNavigationView bottomNavigationView;
     LinearLayout loggedInView, loggedOutView;
     SharedPreferencesManager sharedPreferencesManager;
@@ -269,7 +270,6 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         }
         courseList.clear();
         courseList.addAll(inProgressCourses);
-        setupCourseAdapter();
     }
 
     private void setupCourseAdapter() {

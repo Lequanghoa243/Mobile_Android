@@ -8,6 +8,7 @@ import com.example.mobileproject.model.Lesson;
 import com.example.mobileproject.model.LessonRequest;
 import com.example.mobileproject.model.LoginRequest;
 import com.example.mobileproject.model.LoginResponse;
+import com.example.mobileproject.model.PercentageResponse;
 import com.example.mobileproject.model.RatingRequest;
 import com.example.mobileproject.model.User;
 import com.example.mobileproject.model.UserRequest;
@@ -33,6 +34,9 @@ public interface ApiInterface {
 
     @GET("course")
     Call<List<Course>> getAllCourse();
+
+    @POST("/percentage")
+    Call<PercentageResponse> getPercentage(@Body LessonRequest lessonRequest);
 
     @POST("lesson/getonelesson")
     Call<Lesson> getOneLesson(@Body LessonRequest lessonRequest);

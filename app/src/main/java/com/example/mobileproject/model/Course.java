@@ -8,7 +8,19 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class Course {
+    private int progress;
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public boolean isInProgress() {
+        return progress > 0 && progress < 100;
+    }
     @SerializedName("_id")
     @Expose
     private String id;
