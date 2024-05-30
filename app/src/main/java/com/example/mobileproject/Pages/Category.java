@@ -50,36 +50,48 @@ public class Category extends AppCompatActivity implements CategoryAdapterMain.O
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
         sharedPreferencesManager = new SharedPreferencesManager(this);
         categoryRecyclerView = findViewById(R.id.category_recycler);
         courseRecyclerView = findViewById(R.id.course_of_category_recycler);
 
         loadCategories();
-        loadWishlist(); // Load the wishlist before loading courses
+        loadWishlist();
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.category);
-        bottomNavigationView.findViewById(R.id.home).setOnClickListener(v -> {
-            Intent intent = new Intent(Category.this, MainActivity.class);
-            startActivity(intent);
+
+        bottomNavigationView.findViewById(R.id.home).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Category.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
 
-        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(v -> {
-            Intent intent = new Intent(Category.this, MyCourse.class);
-            startActivity(intent);
+        bottomNavigationView.findViewById(R.id.my_course).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Category.this, MyCourse.class);
+                startActivity(intent);
+            }
         });
 
-        bottomNavigationView.findViewById(R.id.category).setOnClickListener(v -> {});
+        bottomNavigationView.findViewById(R.id.category).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Category.this, Category.class);
+                startActivity(intent);
+            }
+        });
 
-        bottomNavigationView.findViewById(R.id.user).setOnClickListener(v -> {
-            Intent intent = new Intent(Category.this, Profile.class);
-            startActivity(intent);
+        bottomNavigationView.findViewById(R.id.user).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Category.this, Profile.class);
+                startActivity(intent);
+            }
         });
     }
 
