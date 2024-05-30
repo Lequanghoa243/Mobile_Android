@@ -88,7 +88,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 if (userId != null) {
                     toggleWishlist(userId, course.getId(), holder.wishlistIcon);
                 } else {
-                    Toast.makeText(context, "User ID is missing", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You have to log in fist", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

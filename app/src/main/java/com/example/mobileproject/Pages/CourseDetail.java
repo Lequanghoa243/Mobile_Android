@@ -192,11 +192,11 @@ public class CourseDetail extends AppCompatActivity {
         ImageView star5 = findViewById(R.id.star5);
 
         // Reset all stars to unselected
-        star1.setImageResource(R.drawable.baseline_star_border_24);
-        star2.setImageResource(R.drawable.baseline_star_border_24);
-        star3.setImageResource(R.drawable.baseline_star_border_24);
-        star4.setImageResource(R.drawable.baseline_star_border_24);
-        star5.setImageResource(R.drawable.baseline_star_border_24);
+        star1.setImageResource(R.drawable.star_out_line);
+        star2.setImageResource(R.drawable.star_out_line);
+        star3.setImageResource(R.drawable.star_out_line);
+        star4.setImageResource(R.drawable.star_out_line);
+        star5.setImageResource(R.drawable.star_out_line);
     }
 
     private void fetchCourseDetails(String courseId) {
@@ -275,11 +275,11 @@ public class CourseDetail extends AppCompatActivity {
         ImageView star3 = findViewById(R.id.star3);
         ImageView star4 = findViewById(R.id.star4);
         ImageView star5 = findViewById(R.id.star5);
-        star1.setImageResource(R.drawable.baseline_star_border_24);
-        star2.setImageResource(R.drawable.baseline_star_border_24);
-        star3.setImageResource(R.drawable.baseline_star_border_24);
-        star4.setImageResource(R.drawable.baseline_star_border_24);
-        star5.setImageResource(R.drawable.baseline_star_border_24);
+        star1.setImageResource(R.drawable.star_out_line);
+        star2.setImageResource(R.drawable.star_out_line);
+        star3.setImageResource(R.drawable.star_out_line);
+        star4.setImageResource(R.drawable.star_out_line);
+        star5.setImageResource(R.drawable.star_out_line);
 
         // Set selected stars
         int tag = Integer.parseInt(view.getTag().toString());

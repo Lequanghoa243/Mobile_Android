@@ -73,7 +73,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
 
         // Initialize the category list
-        List<String> categoryList = Arrays.asList("Saved Courses", "In-progress Courses", "Completed Courses");
+        List<String> categoryList = Arrays.asList("Saved Courses", "My Courses");
         listAdapter = new ListAdapter(this, categoryList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         categoryRecyclerView.setLayoutManager(layoutManager);
@@ -121,8 +121,8 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     private void fetchAllCourses(boolean inProgressOnly) {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
-            Log.e(TAG, "User ID is null");
-            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "You have to log in first");
+            Toast.makeText(MyCourse.this, "You have to log in first", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -152,8 +152,8 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     private void fetchUserCourses(boolean inProgressOnly) {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
-            Log.e(TAG, "User ID is null");
-            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "You have to log in first");
+            Toast.makeText(MyCourse.this, "You have to log in first", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -215,8 +215,8 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     private void fetchWishlist(boolean inProgressOnly) {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
-            Log.e(TAG, "User ID is null");
-            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "You have to log in first");
+            Toast.makeText(MyCourse.this, "You have to log in first", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -282,7 +282,7 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
     public void onCategoryClick(String category) {
         if (category.equals("Saved Courses")) {
             filterWishlistCourses();
-        } else if (category.equals("In-progress Courses")) {
+        } else if (category.equals("My Courses")) {
             fetchCourses(); // Fetch all courses and filter based on progress status
         } else {
             // Handle other categories if needed

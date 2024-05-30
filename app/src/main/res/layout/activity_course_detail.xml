@@ -71,17 +71,17 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="670dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
@@ -103,6 +103,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/course" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -291,97 +292,104 @@
                         android:text="Reviews"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
+
                     <LinearLayout
                         android:id="@+id/comment_section_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/review"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/white"
                         android:orientation="vertical"
                         android:padding="16dp"
-                        android:visibility="gone"
-                        android:background="@color/white"
-                        android:layout_below="@id/review"
-                        android:layout_marginTop="16dp">
+                        android:visibility="gone">
 
                         <!-- Star Rating Section -->
                         <LinearLayout
                             android:id="@+id/star_rating_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center">
+                            android:background="@drawable/shapeshadow"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:id="@+id/star1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="4dp"
-                                android:src="@drawable/baseline_star_border_24"
-                                android:tag="1"
-                                android:onClick="selectStar" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:onClick="selectStar"
+                                android:layout_marginStart="2dp"
+                                android:src="@drawable/star_out_line"
+                                android:tag="1" />
 
                             <ImageView
                                 android:id="@+id/star2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="4dp"
-                                android:src="@drawable/baseline_star_border_24"
-                                android:tag="2"
-                                android:onClick="selectStar" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:onClick="selectStar"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/star_out_line"
+                                android:tag="2" />
 
                             <ImageView
                                 android:id="@+id/star3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="4dp"
-                                android:src="@drawable/baseline_star_border_24"
-                                android:tag="3"
-                                android:onClick="selectStar" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:onClick="selectStar"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/star_out_line"
+                                android:tag="3" />
 
                             <ImageView
                                 android:id="@+id/star4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="4dp"
-                                android:src="@drawable/baseline_star_border_24"
-                                android:tag="4"
-                                android:onClick="selectStar" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:onClick="selectStar"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/star_out_line"
+                                android:tag="4" />
 
                             <ImageView
                                 android:id="@+id/star5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="4dp"
-                                android:src="@drawable/baseline_star_border_24"
-                                android:tag="5"
-                                android:onClick="selectStar" />
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:onClick="selectStar"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/star_out_line"
+                                android:tag="5" />
                         </LinearLayout>
 
                         <EditText
                             android:id="@+id/comment_edit_text"
                             android:layout_width="match_parent"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="14dp"
                             android:layout_height="wrap_content"
                             android:hint="Write a comment..."
-                            android:padding="10dp"
-                            android:textColor="@color/black"
+                            android:textColor="@color/gray_700"
                             android:textColorHint="@color/gray_700" />
 
                         <Button
                             android:id="@+id/post_comment_button"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end"
+                            android:paddingRight="10dp"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="10dp"
+                            android:paddingLeft="10dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/round_button"
                             android:text="Post Comment"
-                            android:background="@color/button_color"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="8dp"
-                            android:layout_gravity="end" />
+                            android:textColor="@color/white" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/review_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/comment_section_layout"
-                        android:layout_marginTop="16dp" />
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/shapeshadow" />
 
                 </RelativeLayout>
             </LinearLayout>

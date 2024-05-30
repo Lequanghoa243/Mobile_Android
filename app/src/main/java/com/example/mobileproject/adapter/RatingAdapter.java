@@ -1,10 +1,12 @@
 package com.example.mobileproject.adapter;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,12 +61,12 @@ public class RatingAdapter extends RecyclerView.Adapter<RatingAdapter.RatingView
 
     private void addStarIcons(ViewGroup starLayout, int starRating) {
         starLayout.removeAllViews(); // Clear existing stars
+        int sizeInPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 36, context.getResources().getDisplayMetrics());
         for (int i = 0; i < starRating; i++) {
             ImageView starImageView = new ImageView(context);
-            starImageView.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-            ));
+            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(sizeInPx, sizeInPx);
+            params.setMargins(0, 0, 10, 0); // Set right margin of 2dp
+            starImageView.setLayoutParams(params);
             starImageView.setImageResource(R.drawable.icon_star); // Set star icon drawable
             starLayout.addView(starImageView);
         }

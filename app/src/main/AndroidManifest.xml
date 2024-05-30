@@ -46,6 +46,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" >
+        </activity>
+        <activity
+            android:name=".Pages.Splash_screen"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
