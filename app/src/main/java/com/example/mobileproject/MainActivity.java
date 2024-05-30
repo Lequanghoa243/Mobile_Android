@@ -27,6 +27,7 @@ import com.example.mobileproject.retrofit.RetrofitClient;
 import com.example.mobileproject.utils.SharedPreferencesManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferencesManager sharedPreferencesManager;
     TextView usernameTextView;
     List<String> wishlist;
+    boolean isLoggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         sharedPreferencesManager = new SharedPreferencesManager(this);
+        isLoggedIn = sharedPreferencesManager.getUserId() != null;
         usernameTextView = findViewById(R.id.username);
         updateUsername();
 
@@ -71,7 +74,13 @@ public class MainActivity extends AppCompatActivity {
         courseRecyclerView = findViewById(R.id.course_recycler);
 
         loadCategories();
-        loadWishlist(); // Load the wishlist before loading courses
+        wishlist = new ArrayList<>(); // Initialize wishlist to an empty list
+
+        if (isLoggedIn) {
+            loadWishlist(); // Load the wishlist before loading courses
+        } else {
+            loadCourses(); // Load courses directly if not logged in
+        }
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -127,25 +136,25 @@ public class MainActivity extends AppCompatActivity {
     private void loadWishlist() {
         String userId = sharedPreferencesManager.getUserId();
         GetUserRequest getUserRequest = new GetUserRequest(userId);
-        if (userId != null) {
-            apiInterface.getAUser(getUserRequest).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    if (response.isSuccessful() && response.body() != null) {
-                        User user = response.body();
-                        wishlist = user.getWishlist();
-                        loadCourses(); // Load courses after wishlist is loaded
-                    } else {
-                        Log.e(TAG, "Failed to fetch wishlist: " + response.message());
-                    }
+        apiInterface.getAUser(getUserRequest).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    User user = response.body();
+                    wishlist = user.getWishlist();
+                    loadCourses(); // Load courses after wishlist is loaded
+                } else {
+                    Log.e(TAG, "Failed to fetch wishlist: " + response.message());
+                    loadCourses(); // Load courses even if wishlist fails
                 }
+            }
 
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Log.e(TAG, "Error: " + t.getMessage());
-                }
-            });
-        }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e(TAG, "Error: " + t.getMessage());
+                loadCourses(); // Load courses even if wishlist fails
+            }
+        });
     }
 
     private void loadCourses() {

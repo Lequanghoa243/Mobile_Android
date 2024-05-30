@@ -5,6 +5,7 @@ import com.example.mobileproject.model.Course;
 import com.example.mobileproject.model.EnrollRequest;
 import com.example.mobileproject.model.GetUserRequest;
 import com.example.mobileproject.model.Lesson;
+import com.example.mobileproject.model.LessonRequest;
 import com.example.mobileproject.model.LoginRequest;
 import com.example.mobileproject.model.LoginResponse;
 import com.example.mobileproject.model.RatingRequest;
@@ -33,6 +34,8 @@ public interface ApiInterface {
     @GET("course")
     Call<List<Course>> getAllCourse();
 
+    @POST("lesson/getonelesson")
+    Call<Lesson> getOneLesson(@Body LessonRequest lessonRequest);
     @GET("course/{id}")
     Call<Course> getCourseById(@Path("id") String courseId);
 

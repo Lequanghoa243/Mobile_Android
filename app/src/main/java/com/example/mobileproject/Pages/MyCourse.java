@@ -82,7 +82,6 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
         // Setup RecyclerView for courses
         courseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         courseRecyclerView.setHasFixedSize(true);
-
     }
 
     private void setupBottomNavigationView() {
@@ -180,11 +179,11 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
             }
         });
     }
+
     private void fetchCourses() {
         String userId = sharedPreferencesManager.getUserId();
         if (userId == null) {
-            Log.e(TAG, "User ID is null");
-            Toast.makeText(MyCourse.this, "User ID is null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyCourse.this, "Log In to use this feature", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -198,8 +197,6 @@ public class MyCourse extends AppCompatActivity implements ListAdapter.OnCategor
                     courseList.clear();
                     courseList.addAll(response.body());
                     courseAdapter.notifyDataSetChanged();
-                    Log.d(TAG, "Courses fetched successfully");
-                    Toast.makeText(MyCourse.this, "Courses fetched successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(TAG, "Failed to fetch courses: " + response.message());
                     Toast.makeText(MyCourse.this, "Failed to fetch courses", Toast.LENGTH_SHORT).show();
